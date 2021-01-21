@@ -17,8 +17,17 @@ suite('scaffold', () => {
   teardown(() => sandbox.restore());
 
   test('that the README is created', async () => {
-    await scaffoldReadme({projectRoot});
+    const projectName = any.word();
+    const description = any.sentence();
 
-    assert.calledWith(fs.writeFile, `${projectRoot}/README.md`, '');
+    await scaffoldReadme({projectRoot, projectName, description});
+
+    assert.calledWith(
+      fs.writeFile,
+      `${projectRoot}/README.md`,
+      `# ${projectName}
+
+${description}`
+    );
   });
 });

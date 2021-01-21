@@ -1,7 +1,12 @@
+import {promises as fs} from 'fs';
 import {Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
-import {fileExists} from '@form8ion/core';
 
 Then('a README is created', async function () {
-  assert.isTrue(await fileExists(`${process.cwd()}/README.md`));
+  assert.equal(
+    await fs.readFile(`${process.cwd()}/README.md`, 'utf-8'),
+    `# ${this.projectName}
+
+${this.projectDescription}`
+  );
 });

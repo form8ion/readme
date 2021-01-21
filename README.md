@@ -13,6 +13,8 @@ opinionated scaffolder for a project README
 * [Usage](#usage)
   * [Installation](#installation)
   * [Example](#example)
+    * [Import](#import)
+    * [Execute](#execute)
 * [Contributing](#contributing)
   * [Dependencies](#dependencies)
   * [Verification](#verification)
@@ -45,7 +47,7 @@ import {scaffold} from '@form8ion/readme';
 
 ```javascript
 (async () => {
-  await scaffold({projectRoot: process.cwd()});
+  await scaffold({projectRoot: process.cwd(), projectName: 'foo', description: 'Short description of the project'});
 })();
 ```
 
