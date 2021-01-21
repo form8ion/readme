@@ -1,0 +1,6 @@
+_extends: .github
+repository:
+  name: readme
+  description: opinionated scaffolder for a project README
+  homepage: https://npm.im/@form8ion/readme
+  private: false
