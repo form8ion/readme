@@ -7,6 +7,16 @@ Then('a README is created', async function () {
     await fs.readFile(`${process.cwd()}/README.md`, 'utf-8'),
     `# ${this.projectName}
 
-${this.projectDescription}`
+${this.projectDescription}
+
+<!--status-badges start -->
+<!--status-badges end -->
+
+<!--consumer-badges start -->
+<!--consumer-badges end -->
+
+<!--contribution-badges start -->
+<!--contribution-badges end -->
+`
   );
 });

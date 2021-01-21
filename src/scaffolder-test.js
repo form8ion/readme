@@ -27,7 +27,17 @@ suite('scaffold', () => {
       `${projectRoot}/README.md`,
       `# ${projectName}
 
-${description}`
+${description}
+
+<!--status-badges start -->
+<!--status-badges end -->
+
+<!--consumer-badges start -->
+<!--consumer-badges end -->
+
+<!--contribution-badges start -->
+<!--contribution-badges end -->
+`
     );
   });
 });
