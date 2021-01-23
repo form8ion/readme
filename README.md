@@ -40,7 +40,7 @@ $ npm install @form8ion/readme --save-prod
 #### Import
 
 ```javascript
-import {scaffold} from '@form8ion/readme';
+import {lift, scaffold} from '@form8ion/readme';
 ```
 
 #### Execute
@@ -48,6 +48,8 @@ import {scaffold} from '@form8ion/readme';
 ```javascript
 (async () => {
   await scaffold({projectRoot: process.cwd(), projectName: 'foo', description: 'Short description of the project'});
+
+  await lift({projectRoot: process.cwd(), results: {badges: {}}});
 })();
 ```
 

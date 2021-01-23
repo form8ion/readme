@@ -21,3 +21,15 @@ When('the project is scaffolded', async function () {
 
   await scaffold({projectRoot: process.cwd(), projectName: this.projectName, description: this.projectDescription});
 });
+
+When('the project is lifted', async function () {
+  // eslint-disable-next-line import/no-extraneous-dependencies,import/no-unresolved
+  const {lift} = require('@form8ion/readme');
+
+  stubbedFs({
+    node_modules: stubbedNodeModules,
+    'README.md': this.existingReadmeContent
+  });
+
+  await lift({projectRoot: process.cwd(), results: {badges: this.badges}});
+});

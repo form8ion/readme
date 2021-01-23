@@ -57,6 +57,7 @@
     "@form8ion/eslint-config-mocha": "1.2.9",
     "@form8ion/remark-lint-preset": "1.0.11",
     "@istanbuljs/nyc-config-babel": "3.0.0",
+    "@rollup/plugin-commonjs": "^17.0.0",
     "@travi/any": "2.0.15",
     "babel-plugin-istanbul": "6.0.0",
     "ban-sensitive-files": "1.9.14",
@@ -81,6 +82,9 @@
     "sinon": "9.2.3"
   },
   "dependencies": {
-    "@travi/cli-messages": "^1.0.4"
+    "@form8ion/remark-inject-badges": "^1.1.0",
+    "@form8ion/remark-update-legacy-badge-markers": "^1.0.1",
+    "@travi/cli-messages": "^1.0.4",
+    "remark": "^13.0.0"
   }
 }
