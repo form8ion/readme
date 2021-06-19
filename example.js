@@ -11,5 +11,5 @@ stubbedFs();
 (async () => {
   await scaffold({projectRoot: process.cwd(), projectName: 'foo', description: 'Short description of the project'});
 
-  await lift({projectRoot: process.cwd(), results: {badges: {}}});
+  await lift({projectRoot: process.cwd(), results: {badges: {}, documentation: {}}});
 })();

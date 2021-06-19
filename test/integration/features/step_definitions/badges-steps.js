@@ -55,6 +55,8 @@ Then('the badges from the results are added to the README', async function () {
     actual,
     `# project-name
 
+${this.projectDescription}
+
 <!--status-badges start -->
 
 <!--status-badges end -->
@@ -100,6 +102,8 @@ Then('the badges remain as they were in the README', async function () {
   assert.equal(
     await fs.readFile(`${process.cwd()}/README.md`, 'utf-8'),
     `# project-name
+
+${this.projectDescription}
 
 <!--status-badges start -->
 

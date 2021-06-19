@@ -1,6 +1,11 @@
 import {promises as fs} from 'fs';
-import {Given, Then} from '@cucumber/cucumber';
+import {Before, Given, Then} from '@cucumber/cucumber';
 import {assert} from 'chai';
+import any from '@travi/any';
+
+Before(function () {
+  this.projectDescription = any.sentence();
+});
 
 Given('the existing README has no section heading', async function () {
   return undefined;
@@ -8,6 +13,8 @@ Given('the existing README has no section heading', async function () {
 
 Given('the existing README uses modern badge zones', async function () {
   this.existingReadmeContent = `# project-name
+
+${this.projectDescription}
 
 <!--status-badges start -->
 <!--status-badges end -->
@@ -27,6 +34,8 @@ ${this.badgeDefinitions.join('\n\n')}`;
 
 Given('the existing README uses legacy badge section markers', async function () {
   this.existingReadmeContent = `# project-name
+
+${this.projectDescription}
 
 <!-- status badges -->
 
