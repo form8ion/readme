@@ -66,7 +66,7 @@
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
     "gherkin-lint": "4.2.2",
-    "husky": "4.3.8",
+    "husky": "6.0.0",
     "lockfile-lint": "4.6.2",
     "mdast-util-heading-range": "2.1.5",
     "mocha": "8.4.0",
