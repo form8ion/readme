@@ -1,6 +1,7 @@
 import fs from 'fs';
 import badgePlugin from '@form8ion/remark-inject-badges';
 import legacyMarkerPlugin from '@form8ion/remark-update-legacy-badge-markers';
+import readmePlugin from '@form8ion/remark-readme';
 import sinon from 'sinon';
 import {assert} from 'chai';
 import any from '@travi/any';
@@ -11,6 +12,7 @@ import lift from './lift';
 suite('lift', () => {
   let sandbox, process;
   const badges = any.simpleObject();
+  const documentation = any.simpleObject();
 
   setup(() => {
     sandbox = sinon.createSandbox();
@@ -25,7 +27,8 @@ suite('lift', () => {
     remark.default.returns({data});
     data.withArgs('settings', settings).returns({use});
     use.withArgs(legacyMarkerPlugin).returns({use});
-    use.withArgs(badgePlugin, badges).returns({process});
+    use.withArgs(badgePlugin, badges).returns({use});
+    use.withArgs(readmePlugin, documentation).returns({process});
   });
 
   teardown(() => sandbox.restore());
@@ -38,7 +41,7 @@ suite('lift', () => {
     process.withArgs(existingFileContents).yields(null, updatedFileContents);
     fs.readFileSync.withArgs(pathToReadmeFile, 'utf8').returns(existingFileContents);
 
-    await lift({projectRoot, results: {badges}});
+    await lift({projectRoot, results: {badges, documentation}});
 
     assert.calledWith(fs.writeFileSync, pathToReadmeFile, updatedFileContents);
   });
@@ -48,7 +51,7 @@ suite('lift', () => {
     process.yields(error);
 
     try {
-      await lift({results: {badges}});
+      await lift({results: {badges, documentation}});
 
       throw new Error('Calling the lifter should have thrown an error in this test');
     } catch (err) {
