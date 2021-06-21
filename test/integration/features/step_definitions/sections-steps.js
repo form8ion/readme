@@ -30,5 +30,5 @@ Then('the {string} content is populated', async function (sectionName) {
     'paragraph'
   );
 
-  assert.deepInclude(paragraphs, {value: this[sectionName.toLowerCase()]});
+  assert.equal(paragraphs[0].children[0].value, this[sectionName.toLowerCase()]);
 });
