@@ -7,3 +7,7 @@ Feature:
     When the project is lifted
     Then there is a "Usage" heading
     And the "Usage" content is populated
+
+  Scenario: No documentation provided
+    Given the existing README uses modern badge zones
+    When the project is lifted

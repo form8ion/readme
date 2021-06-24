@@ -31,5 +31,8 @@ When('the project is lifted', async function () {
     'README.md': this.existingReadmeContent
   });
 
-  await lift({projectRoot: process.cwd(), results: {badges: this.badges, documentation: {usage: this.usage}}});
+  await lift({
+    projectRoot: process.cwd(),
+    results: {badges: this.badges, ...this.usage && {documentation: {usage: this.usage}}}
+  });
 });

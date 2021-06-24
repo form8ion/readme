@@ -10,7 +10,7 @@ import {settings} from '../.remarkrc';
 import lift from './lift';
 
 suite('lift', () => {
-  let sandbox, process;
+  let sandbox, process, use;
   const badges = any.simpleObject();
   const documentation = any.simpleObject();
 
@@ -21,14 +21,13 @@ suite('lift', () => {
     sandbox.stub(fs, 'readFileSync');
     sandbox.stub(fs, 'writeFileSync');
 
-    const use = sinon.stub();
     const data = sinon.stub();
+    use = sinon.stub();
     process = sinon.stub();
     remark.default.returns({data});
     data.withArgs('settings', settings).returns({use});
     use.withArgs(legacyMarkerPlugin).returns({use});
     use.withArgs(badgePlugin, badges).returns({use});
-    use.withArgs(readmePlugin, documentation).returns({process});
   });
 
   teardown(() => sandbox.restore());
@@ -38,6 +37,7 @@ suite('lift', () => {
     const pathToReadmeFile = `${projectRoot}/README.md`;
     const existingFileContents = any.string();
     const updatedFileContents = any.string();
+    use.withArgs(readmePlugin, documentation).returns({process});
     process.withArgs(existingFileContents).yields(null, updatedFileContents);
     fs.readFileSync.withArgs(pathToReadmeFile, 'utf8').returns(existingFileContents);
 
@@ -46,8 +46,23 @@ suite('lift', () => {
     assert.calledWith(fs.writeFileSync, pathToReadmeFile, updatedFileContents);
   });
 
+  test('that `documentation` content defaults to an empty object', async () => {
+    const projectRoot = any.string();
+    const pathToReadmeFile = `${projectRoot}/README.md`;
+    const existingFileContents = any.string();
+    const updatedFileContents = any.string();
+    use.withArgs(readmePlugin, {}).returns({process});
+    process.withArgs(existingFileContents).yields(null, updatedFileContents);
+    fs.readFileSync.withArgs(pathToReadmeFile, 'utf8').returns(existingFileContents);
+
+    await lift({projectRoot, results: {badges}});
+
+    assert.calledWith(fs.writeFileSync, pathToReadmeFile, updatedFileContents);
+  });
+
   test('that a processing failure rejects the promise', async () => {
     const error = new Error('from test');
+    use.withArgs(readmePlugin, documentation).returns({process});
     process.yields(error);
 
     try {

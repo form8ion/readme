@@ -16,7 +16,7 @@ export default function ({projectRoot, results}) {
       .data('settings', remarkConfig.settings)
       .use(updateLegacyBadgeMarkers)
       .use(badgeInjectorPlugin, results.badges)
-      .use(readmePlugin, results.documentation)
+      .use(readmePlugin, results.documentation || {})
       .process(fs.readFileSync(pathToReadme, 'utf8'), (err, file) => {
         if (err) reject(err);
         else {
