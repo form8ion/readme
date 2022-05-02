@@ -26,6 +26,7 @@ opinionated scaffolder for a project README
 [![MIT license][license-badge]][license-link]
 [![npm][npm-badge]][npm-link]
 [![Try @form8ion/readme on RunKit][runkit-badge]][runkit-link]
+![node][node-badge]
 
 <!--consumer-badges end -->
 
@@ -113,3 +114,5 @@ $ npm test
 [runkit-link]: https://npm.runkit.com/@form8ion/readme
 
 [runkit-badge]: https://badge.runkitcdn.com/@form8ion/readme.svg
+
+[node-badge]: https://img.shields.io/node/v/@form8ion/readme?logo=node.js
