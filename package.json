@@ -48,7 +48,8 @@
     "coverage:report": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
     "test:unit:base": "DEBUG=any mocha 'src/**/*-test.js'",
     "lint:peer": "npm ls >/dev/null",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "lint:engines": "ls-engines"
   },
   "devDependencies": {
     "@babel/register": "7.17.7",
@@ -72,6 +73,7 @@
     "gherkin-lint": "4.2.2",
     "husky": "7.0.4",
     "lockfile-lint": "4.7.4",
+    "ls-engines": "0.6.5",
     "mocha": "9.2.2",
     "mock-fs": "5.1.2",
     "npm-run-all": "4.1.5",
