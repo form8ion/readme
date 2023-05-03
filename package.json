@@ -48,7 +48,8 @@
     "lib/"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "provenenace": true
   },
   "dependencies": {
     "@form8ion/remark-inject-badges": "^2.0.0",
