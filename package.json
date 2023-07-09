@@ -49,7 +49,7 @@
   ],
   "publishConfig": {
     "access": "public",
-    "provenenace": true
+    "provenance": true
   },
   "dependencies": {
     "@form8ion/remark-inject-badges": "^2.0.0",
