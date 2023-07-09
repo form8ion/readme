@@ -1,10 +1,12 @@
-import fs from 'fs';
+import fs from 'node:fs';
+import remark from 'remark';
+
 import {info} from '@travi/cli-messages';
 import badgeInjectorPlugin from '@form8ion/remark-inject-badges';
 import readmePlugin from '@form8ion/remark-readme';
 import updateLegacyBadgeMarkers from '@form8ion/remark-update-legacy-badge-markers';
+
 import * as remarkConfig from '../.remarkrc';
-import remark from '../thirdparty-wrappers/remark';
 
 export default function ({projectRoot, results}) {
   info('Lifting README');

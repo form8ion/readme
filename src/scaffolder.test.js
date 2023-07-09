@@ -1,29 +1,26 @@
-import {promises as fs} from 'fs';
-import sinon from 'sinon';
-import {assert} from 'chai';
+import {promises as fs} from 'node:fs';
+
 import any from '@travi/any';
+import {vi, describe, it, expect, afterEach} from 'vitest';
+
 import scaffoldReadme from './scaffolder';
 
-suite('scaffold', () => {
-  let sandbox;
+vi.mock('node:fs');
+
+describe('scaffold', () => {
   const projectRoot = any.string();
 
-  setup(() => {
-    sandbox = sinon.createSandbox();
-
-    sandbox.stub(fs, 'writeFile');
+  afterEach(() => {
+    vi.clearAllMocks();
   });
 
-  teardown(() => sandbox.restore());
-
-  test('that the README is created', async () => {
+  it('should create the readme', async () => {
     const projectName = any.word();
     const description = any.sentence();
 
     await scaffoldReadme({projectRoot, projectName, description});
 
-    assert.calledWith(
-      fs.writeFile,
+    expect(fs.writeFile).toHaveBeenCalledWith(
       `${projectRoot}/README.md`,
       `# ${projectName}
 

@@ -1,4 +1,4 @@
-import {promises as fs} from 'fs';
+import {promises as fs} from 'node:fs';
 import {info} from '@travi/cli-messages';
 
 export default function ({projectRoot, projectName, description}) {
