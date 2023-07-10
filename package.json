@@ -74,7 +74,7 @@
     "chai": "4.3.7",
     "cross-env": "7.0.3",
     "cz-conventional-changelog": "3.3.0",
-    "deep-equal": "2.2.1",
+    "deep-equal": "2.2.2",
     "gherkin-lint": "4.2.2",
     "husky": "8.0.3",
     "jest-when": "3.5.2",
