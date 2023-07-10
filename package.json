@@ -3,6 +3,7 @@
   "description": "opinionated scaffolder for a project README",
   "license": "MIT",
   "version": "0.0.0-semantically-released",
+  "type": "module",
   "engines": {
     "node": "^14.15 || >=16"
   },
@@ -11,8 +12,8 @@
   "bugs": "https://github.com/form8ion/readme/issues",
   "homepage": "https://npm.im/@form8ion/readme",
   "runkitExampleFilename": "./example.js",
-  "main": "lib/index.cjs.js",
-  "module": "lib/index.es.js",
+  "main": "./lib/index.js",
+  "exports": "./lib/index.js",
   "sideEffects": false,
   "scripts": {
     "test": "npm-run-all --print-label build --parallel lint:* --parallel test:*",
@@ -26,7 +27,7 @@
     "pretest:integration": "preview",
     "lint:gherkin": "gherkin-lint",
     "test:integration": "run-s 'test:integration:base -- --profile noWip'",
-    "test:integration:base": "DEBUG=any cucumber-js test/integration --profile base",
+    "test:integration:base": "DEBUG=any cucumber-js test/integration",
     "test:integration:debug": "NODE_OPTIONS=--enable-source-maps DEBUG=test run-s test:integration",
     "test:integration:wip": "NODE_OPTIONS=--enable-source-maps run-s 'test:integration:base -- --profile wip'",
     "test:integration:wip:debug": "NODE_OPTIONS=--enable-source-maps DEBUG=test run-s 'test:integration:wip'",
@@ -42,7 +43,7 @@
     "lint:peer": "npm ls >/dev/null",
     "prepare": "husky install",
     "lint:engines": "ls-engines",
-    "lint:publish": "publint"
+    "lint:publish": "publint --strict"
   },
   "files": [
     "example.js",

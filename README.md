@@ -10,14 +10,14 @@ opinionated scaffolder for a project README
 
 ## Table of Contents
 
-* [Usage](#usage)
-  * [Installation](#installation)
-  * [Example](#example)
-    * [Import](#import)
-    * [Execute](#execute)
-* [Contributing](#contributing)
-  * [Dependencies](#dependencies)
-  * [Verification](#verification)
+*   [Usage](#usage)
+    *   [Installation](#installation)
+    *   [Example](#example)
+        *   [Import](#import)
+        *   [Execute](#execute)
+*   [Contributing](#contributing)
+    *   [Dependencies](#dependencies)
+    *   [Verification](#verification)
 
 ## Usage
 

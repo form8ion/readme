@@ -9,7 +9,7 @@ import any from '@travi/any';
 import {when} from 'jest-when';
 import deepEqual from 'deep-equal';
 
-import {settings} from '../.remarkrc';
+import {settings} from '../.remarkrc.cjs';
 import lift from './lift';
 
 vi.mock('node:fs');

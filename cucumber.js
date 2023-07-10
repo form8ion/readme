@@ -1,6 +1,22 @@
-module.exports = {
-  base: '--require-module @babel/register --format-options \'{"snippetInterface": "async-await"}\' --publish-quiet',
-  wip: '--tags "@wip"',
-  noWip: '--tags "not @wip"',
-  focus: '--tags @focus'
+const base = {
+  formatOptions: {snippetInterface: 'async-await'},
+  import: ['test/integration/features/**/*.js'],
+  publishQuiet: true
+};
+
+export default base;
+
+export const wip = {
+  ...base,
+  tags: '@wip and not @skip'
+};
+
+export const noWip = {
+  ...base,
+  tags: 'not @skip and not @wip'
+};
+
+export const focus = {
+  ...base,
+  tags: '@focus'
 };
