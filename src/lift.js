@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import remark from 'remark';
+import {remark} from 'remark';
 
 import {info} from '@travi/cli-messages';
 import badgeInjectorPlugin from '@form8ion/remark-inject-badges';
