@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import remark from 'remark';
+import {remark} from 'remark';
 import readmePlugin from '@form8ion/remark-readme';
 import legacyMarkerPlugin from '@form8ion/remark-update-legacy-badge-markers';
 import badgePlugin from '@form8ion/remark-inject-badges';
@@ -9,8 +9,8 @@ import any from '@travi/any';
 import {when} from 'jest-when';
 import deepEqual from 'deep-equal';
 
-import {settings} from '../.remarkrc';
-import lift from './lift';
+import {settings} from '../.remarkrc.cjs';
+import lift from './lift.js';
 
 vi.mock('node:fs');
 vi.mock('remark');

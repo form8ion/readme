@@ -1,6 +1,6 @@
 import {promises as fs} from 'fs';
-import remark from 'remark';
-import find from 'unist-util-find';
+import {remark} from 'remark';
+import {find} from 'unist-util-find';
 import findBetween from 'unist-util-find-all-between';
 import {Given, Then} from '@cucumber/cucumber';
 import any from '@travi/any';
