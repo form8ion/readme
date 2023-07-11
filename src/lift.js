@@ -1,4 +1,4 @@
-import fs from 'node:fs';
+import {promises as fs} from 'node:fs';
 import {remark} from 'remark';
 
 import {info} from '@travi/cli-messages';
@@ -8,23 +8,17 @@ import updateLegacyBadgeMarkers from '@form8ion/remark-update-legacy-badge-marke
 
 import * as remarkConfig from '../.remarkrc.cjs';
 
-export default function ({projectRoot, results}) {
+export default async function ({projectRoot, results}) {
   info('Lifting README');
 
   const pathToReadme = `${projectRoot}/README.md`;
 
-  return new Promise((resolve, reject) => {
-    remark()
-      .data('settings', remarkConfig.settings)
-      .use(updateLegacyBadgeMarkers)
-      .use(badgeInjectorPlugin, results.badges)
-      .use(readmePlugin, results.documentation || {})
-      .process(fs.readFileSync(pathToReadme, 'utf8'), (err, file) => {
-        if (err) reject(err);
-        else {
-          fs.writeFileSync(pathToReadme, `${file}`);
-          resolve();
-        }
-      });
-  });
+  const file = await remark()
+    .data('settings', remarkConfig.settings)
+    .use(updateLegacyBadgeMarkers)
+    .use(badgeInjectorPlugin, results.badges)
+    .use(readmePlugin, results.documentation || {})
+    .process(await fs.readFile(pathToReadme, 'utf8'));
+
+  return fs.writeFile(pathToReadme, `${file}`);
 }

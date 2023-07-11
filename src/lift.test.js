@@ -1,13 +1,12 @@
-import fs from 'node:fs';
+import {promises as fs} from 'node:fs';
 import {remark} from 'remark';
 import readmePlugin from '@form8ion/remark-readme';
 import legacyMarkerPlugin from '@form8ion/remark-update-legacy-badge-markers';
 import badgePlugin from '@form8ion/remark-inject-badges';
 
-import {vi, describe, it, expect, afterEach, beforeEach} from 'vitest';
+import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
-import deepEqual from 'deep-equal';
 
 import {settings} from '../.remarkrc.cjs';
 import lift from './lift.js';
@@ -41,37 +40,29 @@ describe('lift', () => {
 
   it('should update the readme', async () => {
     when(use).calledWith(readmePlugin, documentation).mockReturnValue({process});
-    when(fs.readFileSync).calledWith(pathToReadmeFile, 'utf8').mockReturnValue(existingFileContents);
-    process.mockImplementation((fileContents, callback) => {
-      if (deepEqual(existingFileContents, fileContents)) {
-        callback(null, updatedFileContents);
-      }
-    });
+    when(fs.readFile).calledWith(pathToReadmeFile, 'utf8').mockResolvedValue(existingFileContents);
+    when(process).calledWith(existingFileContents).mockReturnValue(updatedFileContents);
 
     await lift({projectRoot, results: {badges, documentation}});
 
-    expect(fs.writeFileSync).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
+    expect(fs.writeFile).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
   });
 
   it('should default `documentation` content to an empty object', async () => {
     when(use).calledWith(readmePlugin, {}).mockReturnValue({process});
-    when(fs.readFileSync).calledWith(pathToReadmeFile, 'utf8').mockReturnValue(existingFileContents);
-    process.mockImplementation((fileContents, callback) => {
-      if (deepEqual(existingFileContents, fileContents)) {
-        callback(null, updatedFileContents);
-      }
-    });
+    when(fs.readFile).calledWith(pathToReadmeFile, 'utf8').mockResolvedValue(existingFileContents);
+    when(process).calledWith(existingFileContents).mockReturnValue(updatedFileContents);
 
     await lift({projectRoot, results: {badges}});
 
-    expect(fs.writeFileSync).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
+    expect(fs.writeFile).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
   });
 
   it('should reject the promise when a processing error occurs', async () => {
     const error = new Error('from test');
     when(use).calledWith(readmePlugin, documentation).mockReturnValue({process});
-    process.mockImplementation((_, callback) => {
-      callback(error);
+    process.mockImplementation(() => {
+      throw error;
     });
 
     expect(() => lift({results: {badges, documentation}})).rejects.toThrowError(error);
