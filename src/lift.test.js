@@ -8,7 +8,7 @@ import {afterEach, beforeEach, describe, expect, it, vi} from 'vitest';
 import any from '@travi/any';
 import {when} from 'jest-when';
 
-import {settings} from '../.remarkrc.cjs';
+import remarkConfig from '../.remarkrc.mjs';
 import lift from './lift.js';
 
 vi.mock('node:fs');
@@ -29,7 +29,7 @@ describe('lift', () => {
     process = vi.fn();
 
     remark.mockReturnValue({data});
-    when(data).calledWith('settings', settings).mockReturnValue({use});
+    when(data).calledWith('settings', remarkConfig.settings).mockReturnValue({use});
     when(use).calledWith(legacyMarkerPlugin).mockReturnValue({use});
     when(use).calledWith(badgePlugin, badges).mockReturnValue({use});
   });

@@ -6,7 +6,7 @@ import badgeInjectorPlugin from '@form8ion/remark-inject-badges';
 import readmePlugin from '@form8ion/remark-readme';
 import updateLegacyBadgeMarkers from '@form8ion/remark-update-legacy-badge-markers';
 
-import * as remarkConfig from '../.remarkrc.cjs';
+import remarkConfig from '../.remarkrc.mjs';
 
 export default async function ({projectRoot, results}) {
   info('Lifting README');
