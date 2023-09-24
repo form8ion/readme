@@ -1,7 +1,7 @@
 export default {
 // https://github.com/remarkjs/remark/tree/master/packages/remark-stringify#options
   settings: {
-    listItemIndent: 1,
+    listItemIndent: 'one',
     emphasis: '_',
     strong: '_',
     bullet: '*',
