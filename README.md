@@ -111,7 +111,7 @@ $ npm test
 
 [npm-link]: https://www.npmjs.com/package/@form8ion/readme
 
-[npm-badge]: https://img.shields.io/npm/v/@form8ion/readme.svg
+[npm-badge]: https://img.shields.io/npm/v/@form8ion/readme?logo=npm
 
 [runkit-link]: https://npm.runkit.com/@form8ion/readme
 
