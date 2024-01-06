@@ -6,6 +6,7 @@ opinionated scaffolder for a project README
 
 [![Node CI Workflow Status][github-actions-ci-badge]][github-actions-ci-link]
 [![Codecov][coverage-badge]][coverage-link]
+![SLSA Level 2][slsa-badge]
 
 <!--status-badges end -->
 
@@ -121,3 +122,5 @@ $ npm test
 [coverage-link]: https://codecov.io/github/form8ion/readme
 
 [coverage-badge]: https://img.shields.io/codecov/c/github/form8ion/readme?logo=codecov
+
+[slsa-badge]: https://slsa.dev/images/gh-badge-level2.svg
