@@ -61,7 +61,7 @@
     "remark": "^15.0.0"
   },
   "devDependencies": {
-    "@cucumber/cucumber": "10.9.0",
+    "@cucumber/cucumber": "12.6.0",
     "@form8ion/commitlint-config": "2.0.8",
     "@form8ion/core": "4.11.0",
     "@form8ion/eslint-config": "7.0.13",
