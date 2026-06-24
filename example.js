@@ -9,7 +9,14 @@ stubbedFs();
 // #### Execute
 
 (async () => {
-  await scaffold({projectRoot: process.cwd(), projectName: 'foo', description: 'Short description of the project'});
+  const logger = {
+    info: () => undefined
+  };
 
-  await lift({projectRoot: process.cwd(), results: {badges: {}, documentation: {}}});
+  await scaffold(
+    {projectRoot: process.cwd(), projectName: 'foo', description: 'Short description of the project'},
+    {logger}
+  );
+
+  await lift({projectRoot: process.cwd(), results: {badges: {}, documentation: {}}}, {logger});
 })();

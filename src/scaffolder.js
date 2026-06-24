@@ -1,8 +1,7 @@
 import {promises as fs} from 'node:fs';
-import {info} from '@travi/cli-messages';
 
-export default function ({projectRoot, projectName, description}) {
-  info('Creating README file');
+export default function ({projectRoot, projectName, description}, {logger}) {
+  logger.info('Creating README file');
 
   return fs.writeFile(
     `${projectRoot}/README.md`,

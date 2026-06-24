@@ -4,9 +4,17 @@ import {fileURLToPath} from 'node:url';
 import {After, When} from '@cucumber/cucumber';
 import stubbedFs from 'mock-fs';
 import any from '@travi/any';
+import createDebugFor from 'debug';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));          // eslint-disable-line no-underscore-dangle
 const stubbedNodeModules = stubbedFs.load(resolve(__dirname, '..', '..', '..', '..', 'node_modules'));
+const debug = createDebugFor('test:common-steps');
+const logger = {
+  success: debug,
+  info: debug,
+  warn: debug,
+  error: debug
+};
 
 After(function () {
   stubbedFs.restore();
@@ -22,7 +30,10 @@ When('the project is scaffolded', async function () {
     node_modules: stubbedNodeModules
   });
 
-  await scaffold({projectRoot: process.cwd(), projectName: this.projectName, description: this.projectDescription});
+  await scaffold(
+    {projectRoot: process.cwd(), projectName: this.projectName, description: this.projectDescription},
+    {logger}
+  );
 });
 
 When('the project is lifted', async function () {
@@ -37,5 +48,5 @@ When('the project is lifted', async function () {
   await lift({
     projectRoot: process.cwd(),
     results: {badges: this.badges, ...this.usage && {documentation: {usage: this.usage}}}
-  });
+  }, {logger});
 });

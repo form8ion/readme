@@ -18,7 +18,7 @@ describe('scaffold', () => {
     const projectName = any.word();
     const description = any.sentence();
 
-    await scaffoldReadme({projectRoot, projectName, description});
+    await scaffoldReadme({projectRoot, projectName, description}, {logger: {info: () => undefined}});
 
     expect(fs.writeFile).toHaveBeenCalledWith(
       `${projectRoot}/README.md`,

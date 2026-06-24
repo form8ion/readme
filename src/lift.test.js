@@ -22,6 +22,7 @@ describe('lift', () => {
   const pathToReadmeFile = `${projectRoot}/README.md`;
   const existingFileContents = any.string();
   const updatedFileContents = any.string();
+  const logger = {info: () => undefined};
 
   beforeEach(() => {
     const data = vi.fn();
@@ -43,7 +44,7 @@ describe('lift', () => {
     when(fs.readFile).calledWith(pathToReadmeFile, 'utf8').thenResolve(existingFileContents);
     when(process).calledWith(existingFileContents).thenReturn(updatedFileContents);
 
-    await lift({projectRoot, results: {badges, documentation}});
+    await lift({projectRoot, results: {badges, documentation}}, {logger});
 
     expect(fs.writeFile).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
   });
@@ -53,7 +54,7 @@ describe('lift', () => {
     when(fs.readFile).calledWith(pathToReadmeFile, 'utf8').thenResolve(existingFileContents);
     when(process).calledWith(existingFileContents).thenReturn(updatedFileContents);
 
-    await lift({projectRoot, results: {badges}});
+    await lift({projectRoot, results: {badges}}, {logger});
 
     expect(fs.writeFile).toHaveBeenCalledWith(pathToReadmeFile, updatedFileContents);
   });
@@ -65,6 +66,6 @@ describe('lift', () => {
       throw error;
     });
 
-    await expect(() => lift({results: {badges, documentation}})).rejects.toThrow(error);
+    await expect(() => lift({results: {badges, documentation}}, {logger})).rejects.toThrow(error);
   });
 });
