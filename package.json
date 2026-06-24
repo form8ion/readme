@@ -66,6 +66,7 @@
     "@form8ion/core": "4.11.2",
     "@form8ion/eslint-config": "7.0.18",
     "@form8ion/eslint-config-cucumber": "1.4.1",
+    "@form8ion/eslint-config-vitest": "1.1.0",
     "@form8ion/remark-lint-preset": "6.0.7",
     "@travi/any": "3.3.0",
     "ban-sensitive-files": "1.10.11",
@@ -75,7 +76,6 @@
     "cz-conventional-changelog": "3.3.0",
     "gherkin-lint": "4.2.4",
     "husky": "9.1.7",
-    "jest-when": "4.0.3",
     "lockfile-lint": "5.0.0",
     "ls-engines": "0.9.4",
     "mock-fs": "5.5.0",
@@ -89,6 +89,7 @@
     "rollup-plugin-auto-external": "2.0.0",
     "unist-util-find": "3.0.0",
     "unist-util-find-all-between": "2.1.0",
-    "vitest": "4.1.9"
+    "vitest": "4.1.9",
+    "vitest-when": "0.10.0"
   }
 }
