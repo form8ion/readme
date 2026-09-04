@@ -92,6 +92,6 @@
     "unist-util-find": "3.0.0",
     "unist-util-find-all-between": "2.1.0",
     "vitest": "4.1.11",
-    "vitest-when": "0.10.0"
+    "vitest-when": "0.10.1"
   }
 }
